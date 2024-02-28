@@ -1,42 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_substr.c                                        :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ataoufik <ataoufik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/03 23:09:23 by ataoufik          #+#    #+#             */
-/*   Updated: 2024/02/27 19:07:19 by ataoufik         ###   ########.fr       */
+/*   Created: 2023/11/04 01:18:08 by ataoufik          #+#    #+#             */
+/*   Updated: 2024/02/28 17:50:55 by ataoufik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "../pipex.h"
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	unsigned int	i;
-	unsigned int	j;
-	unsigned int	se;
-	char			*p;
+	int		i;
+	int		j;
+	char	*p;
+	int		len;
 
-	if (!s)
-		return (NULL);
-	se = ft_strlen((char *)s);
+	i = 0;
 	j = 0;
-	i = start;
-	if (start > se)
-		return (ft_calloc(1, 1));
-	if (len >= se - start)
-		len = se - start;
+	if (!s1 && !s2)
+		return (0);
+	len = ft_strlen((char *)s1) + ft_strlen((char *)s2);
 	p = (char *)malloc(sizeof(char) * len + 1);
 	if (!p)
-		return (NULL);
-	while (len--)
-	{
-		p[j] = s[i];
-		i++;
-		j++;
-	}
+		return (0);
+	while (s1[i])
+		p[j++] = s1[i++];
+	i = 0;
+	while (s2[i])
+		p[j++] = s2[i++];
 	p[j] = '\0';
 	return (p);
 }

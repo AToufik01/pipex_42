@@ -6,7 +6,7 @@
 /*   By: ataoufik <ataoufik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 16:05:26 by ataoufik          #+#    #+#             */
-/*   Updated: 2024/02/27 19:31:03 by ataoufik         ###   ########.fr       */
+/*   Updated: 2024/02/28 20:19:58 by ataoufik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,12 @@ char	*ft_strjoin(char const *s1, char const *s2);
 int     ft_strncmp(const char *s1, const char *s2, size_t n);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 void	ft_bzero(void *s, size_t n);
+void	ft_putchar_fd(char c, int fd);
+void	ft_putendl_fd(char *s, int fd);
 int     ft_strlen(const char *s);
 void	*ft_calloc(size_t count, size_t size);
 void    inist_pipe(t_pipex *pip,int arc, char *arv[],char *evm[]);
+void    execute_process_child(t_pipex *pip,char *cmd1 ,char *cmd2);
 void    process_child_f(t_pipex *pip, char *cmd);
 char    *find_path_executable(t_pipex *pip, char *cmd);
 void    process_child_s(t_pipex *pip, char *cmd2);

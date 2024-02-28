@@ -6,11 +6,11 @@
 /*   By: ataoufik <ataoufik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 13:46:54 by ataoufik          #+#    #+#             */
-/*   Updated: 2024/02/27 19:07:07 by ataoufik         ###   ########.fr       */
+/*   Updated: 2024/02/28 17:50:36 by ataoufik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "../pipex.h"
 
 void	ft_bzero(void *s, size_t n)
 {
