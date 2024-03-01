@@ -6,11 +6,11 @@
 /*   By: ataoufik <ataoufik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 16:06:43 by ataoufik          #+#    #+#             */
-/*   Updated: 2024/02/28 20:36:04 by ataoufik         ###   ########.fr       */
+/*   Updated: 2024/03/01 17:18:22 by ataoufik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "../pipex.h"
 
 void    inist_pipe(t_pipex *pip,int arc, char *arv[],char *evm[])
 {
@@ -21,14 +21,21 @@ void    inist_pipe(t_pipex *pip,int arc, char *arv[],char *evm[])
     }
     while(ft_strncmp(*evm, "PATH=", 5) != 0)
         evm++;
+    //    int i = 0;
+    // while(evm[i])
+    //     printf("%s\n",evm[i++]);
     *evm +=5;
     pip->env_path = ft_split (*evm, ':');
+    // int i = 0;
+    // while(pip->env_path[i])
+    //     printf("%s\n",pip->env_path[i++]);
     pip->args = arv;
     pip->n = arc;
-    
+    pip->cmd1 = ft_split(arv[2],' ');
+    pip->cmd2 = ft_split(arv[3],' ');
 }
 
-char    *find_path_executable(t_pipex *pip, char *cmd)
+char    *find_path_executable(t_pipex *pip,char *cmd)
 {
     char    *str;
     char    *path;
@@ -49,24 +56,32 @@ char    *find_path_executable(t_pipex *pip, char *cmd)
     }
     return NULL;
 }
-void    execute_process_child(t_pipex *pip,char *cmd1 ,char *cmd2)
+void    execute_process_child(t_pipex *pip)
 {
     pip->pid1 = fork();
     pip->pid2 = fork();
     if (pip->pid1 == 0)
-        process_child_f(pip, cmd1);
+        process_child_f(pip);
     if (pip->pid2 == 0)
-        process_child_s(pip, cmd2);
+        process_child_s(pip);
+    free_2d_arr(pip->env_path);
+    free_2d_arr(pip->cmd1);
+    free_2d_arr(pip->cmd2);
 }
+// void    f()
+// {
+//     system("leaks pipex");
+// }
 int main(int arc, char *arv[], char *evm[])
 {
     t_pipex pip;
     int status;
+    // atexit(f);
 
     if (arc != 5)
         return (0);
     inist_pipe(&pip, arc, arv, evm);
-    execute_process_child(&pip,arv[2],arv[3]);
+    execute_process_child(&pip);
     close(pip.fd[1]);
     close(pip.fd[0]);
     waitpid(pip.pid1,&status,0);
