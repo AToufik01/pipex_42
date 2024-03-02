@@ -6,7 +6,7 @@
 /*   By: ataoufik <ataoufik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 16:06:43 by ataoufik          #+#    #+#             */
-/*   Updated: 2024/03/01 17:18:22 by ataoufik         ###   ########.fr       */
+/*   Updated: 2024/03/02 18:34:16 by ataoufik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,8 @@ void    inist_pipe(t_pipex *pip,int arc, char *arv[],char *evm[])
     }
     while(ft_strncmp(*evm, "PATH=", 5) != 0)
         evm++;
-    //    int i = 0;
-    // while(evm[i])
-    //     printf("%s\n",evm[i++]);
     *evm +=5;
     pip->env_path = ft_split (*evm, ':');
-    // int i = 0;
-    // while(pip->env_path[i])
-    //     printf("%s\n",pip->env_path[i++]);
     pip->args = arv;
     pip->n = arc;
     pip->cmd1 = ft_split(arv[2],' ');
@@ -49,7 +43,7 @@ char    *find_path_executable(t_pipex *pip,char *cmd)
         str = ft_strjoin(pip->env_path[i], "/");
         path = ft_strjoin(str, cmd);
         free(str);
-        if (access(path, X_OK) == 0)
+        if (access(path, X_OK) == 0 && access(path, F_OK)==0)
             return (path);
         i++;
         free(path);
@@ -59,24 +53,20 @@ char    *find_path_executable(t_pipex *pip,char *cmd)
 void    execute_process_child(t_pipex *pip)
 {
     pip->pid1 = fork();
-    pip->pid2 = fork();
     if (pip->pid1 == 0)
         process_child_f(pip);
+    pip->pid2 = fork();
     if (pip->pid2 == 0)
         process_child_s(pip);
     free_2d_arr(pip->env_path);
     free_2d_arr(pip->cmd1);
     free_2d_arr(pip->cmd2);
 }
-// void    f()
-// {
-//     system("leaks pipex");
-// }
+
 int main(int arc, char *arv[], char *evm[])
 {
     t_pipex pip;
     int status;
-    // atexit(f);
 
     if (arc != 5)
         return (0);

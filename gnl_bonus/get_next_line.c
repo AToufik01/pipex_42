@@ -6,7 +6,7 @@
 /*   By: ataoufik <ataoufik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 17:46:52 by ataoufik          #+#    #+#             */
-/*   Updated: 2024/03/01 17:08:10 by ataoufik         ###   ########.fr       */
+/*   Updated: 2024/03/02 15:17:51 by ataoufik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,12 +53,12 @@ char	*read_and_set(int fd, char *buffer)
 
 	index_nl = check_and_indxline(buffer);
 	res = NULL;
-	res = ft_strjoin(res, buffer, index_nl + 1);
+	res = ft_strjoiin(res, buffer, index_nl + 1);
 	buffer = shift_buf(buffer, index_nl);
 	while (index_nl == -1 && read(fd, buffer, BUFFER_SIZE) > 0)
 	{
 		index_nl = check_and_indxline(buffer);
-		res = ft_strjoin(res, buffer, index_nl + 1);
+		res = ft_strjoiin(res, buffer, index_nl + 1);
 		buffer = shift_buf(buffer, index_nl);
 	}
 	if (ft_const_strlen(res) == 0)

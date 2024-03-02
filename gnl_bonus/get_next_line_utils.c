@@ -6,7 +6,7 @@
 /*   By: ataoufik <ataoufik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/24 17:51:09 by ataoufik          #+#    #+#             */
-/*   Updated: 2024/03/01 17:08:15 by ataoufik         ###   ########.fr       */
+/*   Updated: 2024/03/02 15:17:41 by ataoufik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	ft_const_strlen(const char *s)
 	return (i);
 }
 
-char	*ft_strjoin(char const *s1, char const *s2, int lens2)
+char	*ft_strjoiin(char const *s1, char const *s2, int lens2)
 {
 	int		i;
 	int		j;

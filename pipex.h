@@ -6,7 +6,7 @@
 /*   By: ataoufik <ataoufik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 16:05:26 by ataoufik          #+#    #+#             */
-/*   Updated: 2024/02/29 17:13:39 by ataoufik         ###   ########.fr       */
+/*   Updated: 2024/03/02 15:20:05 by ataoufik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 #define PIPEX_H
 
 #include <stdio.h>
+#include <stdio.h>
+
 #include <unistd.h>
 #include <fcntl.h>
 #include <stdlib.h>
