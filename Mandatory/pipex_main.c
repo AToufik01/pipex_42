@@ -6,7 +6,7 @@
 /*   By: ataoufik <ataoufik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 16:06:43 by ataoufik          #+#    #+#             */
-/*   Updated: 2024/03/02 18:34:16 by ataoufik         ###   ########.fr       */
+/*   Updated: 2024/03/07 18:32:42 by ataoufik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ char    *find_path_executable(t_pipex *pip,char *cmd)
     i = 0;
     str = NULL;
     path = NULL;
+    // if (access(cmd, X_OK) == 0 && access(cmd, F_OK)==0)
+    //     return (cmd);
     while(pip->env_path[i])
     {
         str = ft_strjoin(pip->env_path[i], "/");
@@ -53,9 +55,13 @@ char    *find_path_executable(t_pipex *pip,char *cmd)
 void    execute_process_child(t_pipex *pip)
 {
     pip->pid1 = fork();
+    if (pip->pid1 == -1)
+        perror("error");
     if (pip->pid1 == 0)
         process_child_f(pip);
     pip->pid2 = fork();
+    if (pip->pid1 == -1)
+        perror("error");
     if (pip->pid2 == 0)
         process_child_s(pip);
     free_2d_arr(pip->env_path);

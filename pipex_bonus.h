@@ -6,7 +6,7 @@
 /*   By: ataoufik <ataoufik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 16:44:54 by ataoufik          #+#    #+#             */
-/*   Updated: 2024/03/02 18:45:28 by ataoufik         ###   ########.fr       */
+/*   Updated: 2024/03/08 19:00:47 by ataoufik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,18 @@
 #include <sys/wait.h>
 # include <limits.h>
 
+
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 42
 # endif
 
 typedef struct s_pipexb
 {
-    int tub[2];
     int n;
+    int sig;
+    int tub[2];
+    int infile;
+    int outfile;
     int i;
     pid_t   pid;
     char    **env_path;
@@ -54,12 +58,14 @@ int	check_and_indxline(char *str);
 
 
 
-void    ft_here_doc(t_pipexb *pip, char *str);
+void    ft_here_doc(t_pipexb *pip);
+void    check_here_doc(t_pipexb *pip, char *str);
 void    process_child_f_m(t_pipexb *pip, int i);
 
 void    process_child_last(t_pipexb *pip);
 
 char    *find_path_executable(t_pipexb *pip, char *cmd);
+void    ft_execute_command(t_pipexb *pip, int i, char *command);
 void    free_2d_arr(char **str);
 
 

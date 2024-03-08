@@ -1,6 +1,6 @@
 NAME = pipex
 NAMEB = pipex_bonus
-CC = cc -g
+CC = cc
 FLAGS = -Wall -Wextra -Werror
 RM = rm -rf
 
@@ -35,4 +35,4 @@ fclean: clean
 	$(RM) $(NAME)
 	$(RM) $(NAMEB)
 
-re : fclean all 
+re : fclean all
