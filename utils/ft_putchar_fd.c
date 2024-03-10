@@ -6,10 +6,11 @@
 /*   By: ataoufik <ataoufik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/05 16:02:33 by ataoufik          #+#    #+#             */
-/*   Updated: 2024/02/28 17:50:44 by ataoufik         ###   ########.fr       */
+/*   Updated: 2024/03/10 17:36:55 by ataoufik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../pipex_bonus.h"
 #include "../pipex.h"
 
 void	ft_putchar_fd(char c, int fd)

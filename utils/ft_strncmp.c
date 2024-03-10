@@ -6,10 +6,11 @@
 /*   By: ataoufik <ataoufik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/01 18:49:07 by ataoufik          #+#    #+#             */
-/*   Updated: 2024/02/28 17:51:01 by ataoufik         ###   ########.fr       */
+/*   Updated: 2024/03/10 17:37:26 by ataoufik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../pipex_bonus.h"
 #include "../pipex.h"
 
 int	ft_strncmp(const char *s1, const char *s2, size_t n)

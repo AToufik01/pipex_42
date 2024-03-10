@@ -6,7 +6,7 @@
 /*   By: ataoufik <ataoufik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 16:05:26 by ataoufik          #+#    #+#             */
-/*   Updated: 2024/03/10 16:38:04 by ataoufik         ###   ########.fr       */
+/*   Updated: 2024/03/10 17:32:39 by ataoufik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ typedef struct s_pipex
 }	t_pipex;
 
 char	**ft_split(char const *s, char c);
+char	**ft_split_space_tab(char *str);
 char	*ft_strjoin(char const *s1, char const *s2);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 char	*ft_substr(char const *s, unsigned int start, size_t len);

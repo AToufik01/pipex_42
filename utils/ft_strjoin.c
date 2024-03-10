@@ -6,10 +6,11 @@
 /*   By: ataoufik <ataoufik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/04 01:18:08 by ataoufik          #+#    #+#             */
-/*   Updated: 2024/02/28 17:50:55 by ataoufik         ###   ########.fr       */
+/*   Updated: 2024/03/10 17:37:21 by ataoufik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../pipex_bonus.h"
 #include "../pipex.h"
 
 char	*ft_strjoin(char const *s1, char const *s2)

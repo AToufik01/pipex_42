@@ -6,7 +6,7 @@
 /*   By: ataoufik <ataoufik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/01 16:44:54 by ataoufik          #+#    #+#             */
-/*   Updated: 2024/03/09 19:28:38 by ataoufik         ###   ########.fr       */
+/*   Updated: 2024/03/10 17:37:50 by ataoufik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ typedef struct s_pipexb
 }	t_pipexb;
 
 char	**ft_split(char const *s, char c);
+char	**ft_split_space_tab(char *str);
 char	*ft_strjoin(char const *s1, char const *s2);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
@@ -56,7 +57,7 @@ void	ft_here_doc(t_pipexb *pip);
 void	check_here_doc(t_pipexb *pip, char *str);
 void	process_child_f_m(t_pipexb *pip, int i);
 void	process_child_last(t_pipexb *pip);
-char	*find_path_executable(t_pipexb *pip, char *cmd);
+char	*find_path_executable_b(t_pipexb *pip, char *cmd);
 void	ft_execute_command(t_pipexb *pip, int i, char *command);
 void	free_2d_arr(char **str);
 void	ft_messg_error(char *str);

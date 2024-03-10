@@ -6,10 +6,11 @@
 /*   By: ataoufik <ataoufik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/03 23:09:23 by ataoufik          #+#    #+#             */
-/*   Updated: 2024/02/28 17:51:03 by ataoufik         ###   ########.fr       */
+/*   Updated: 2024/03/10 17:37:30 by ataoufik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../pipex_bonus.h"
 #include "../pipex.h"
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)

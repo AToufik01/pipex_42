@@ -6,7 +6,7 @@
 /*   By: ataoufik <ataoufik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 16:06:43 by ataoufik          #+#    #+#             */
-/*   Updated: 2024/03/10 16:37:28 by ataoufik         ###   ########.fr       */
+/*   Updated: 2024/03/10 17:33:52 by ataoufik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ void	inist_pipe(t_pipex *pip, int arc, char *arv[], char *evm[])
 
 	pip->args = arv;
 	pip->n = arc;
-	pip->cmd1 = ft_split(arv[2], ' ');
-	pip->cmd2 = ft_split(arv[3], ' ');
+	pip->cmd1 = ft_split_space_tab(arv[2]);
+	pip->cmd2 = ft_split_space_tab(arv[3]);
 	if (pip->cmd1 == NULL || pip->cmd2 == NULL)
 		ft_error("Invalid argument");
 	if (!evm || !*evm)
@@ -49,6 +49,8 @@ char	*find_path_executable(t_pipex *pip, char *cmd)
 	i = 0;
 	str = NULL;
 	path = NULL;
+	if (access(cmd, X_OK) == 0 && access(cmd, F_OK) == 0)
+		return (cmd);
 	while (pip->env_path[i])
 	{
 		str = ft_strjoin(pip->env_path[i], "/");

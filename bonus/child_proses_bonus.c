@@ -6,7 +6,7 @@
 /*   By: ataoufik <ataoufik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 18:49:20 by ataoufik          #+#    #+#             */
-/*   Updated: 2024/03/10 15:31:25 by ataoufik         ###   ########.fr       */
+/*   Updated: 2024/03/10 17:38:20 by ataoufik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,10 @@ void	ft_execute_command(t_pipexb *pip, int i, char *command)
 {
 	char	**cmd;
 
-	cmd = ft_split(pip->args[i], ' ');
+	cmd = ft_split_space_tab(pip->args[i]);
 	if (cmd == NULL)
 		ft_error("Invalid argument");
-	command = find_path_executable(pip, cmd[0]);
+	command = find_path_executable_b(pip, cmd[0]);
 	if (command == NULL)
 		ft_error("Invalid argument");
 	execve(command, cmd, NULL);
@@ -80,7 +80,7 @@ void	process_child_last(t_pipexb *pip)
 	}
 }
 
-char	*find_path_executable(t_pipexb *pip, char *cmd)
+char	*find_path_executable_b(t_pipexb *pip, char *cmd)
 {
 	char	*str;
 	char	*path;
@@ -89,6 +89,8 @@ char	*find_path_executable(t_pipexb *pip, char *cmd)
 	i = 0;
 	str = NULL;
 	path = NULL;
+	if (access(cmd, X_OK) == 0 && access(cmd, F_OK) == 0)
+		return (cmd);
 	while (pip->env_path[i])
 	{
 		str = ft_strjoin(pip->env_path[i], "/");

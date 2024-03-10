@@ -6,10 +6,11 @@
 /*   By: ataoufik <ataoufik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/05 20:14:05 by ataoufik          #+#    #+#             */
-/*   Updated: 2024/02/29 15:38:22 by ataoufik         ###   ########.fr       */
+/*   Updated: 2024/03/10 17:37:14 by ataoufik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../pipex_bonus.h"
 #include "../pipex.h"
 
 static int	ft_cont_word(const char *str, char c)
