@@ -6,7 +6,7 @@
 /*   By: ataoufik <ataoufik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/27 18:49:20 by ataoufik          #+#    #+#             */
-/*   Updated: 2024/03/09 19:20:31 by ataoufik         ###   ########.fr       */
+/*   Updated: 2024/03/10 15:31:25 by ataoufik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,20 +65,17 @@ void	process_child_last(t_pipexb *pip)
 	if (pip->pid == 0)
 	{
 		close(pip->tub[0]);
-		if (dup2(pip->tub[1], STDOUT_FILENO) == -1)
-			ft_messg_error("Error in dup2");
+		dup2(pip->tub[1], STDOUT_FILENO);
 		close(pip->tub[1]);
 		ft_open_outfile(pip, pip->sig);
-		if (dup2(pip->outfile, STDOUT_FILENO) == -1)
-			ft_messg_error("Error in dup2");
+		dup2(pip->outfile, STDOUT_FILENO);
 		close(pip->outfile);
 		ft_execute_command(pip, pip->i, command);
 	}
 	else
 	{
 		close(pip->tub[1]);
-		if (dup2(pip->tub[0], STDIN_FILENO) == -1)
-			ft_messg_error("Error in dup2");
+		dup2(pip->tub[0], STDIN_FILENO);
 		close(pip->tub[0]);
 	}
 }

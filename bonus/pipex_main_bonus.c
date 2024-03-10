@@ -6,7 +6,7 @@
 /*   By: ataoufik <ataoufik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 16:06:43 by ataoufik          #+#    #+#             */
-/*   Updated: 2024/03/09 19:20:58 by ataoufik         ###   ########.fr       */
+/*   Updated: 2024/03/10 16:33:54 by ataoufik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,26 @@
 
 void	inist_pipe(t_pipexb *pip, int arc, char *arv[], char *evm[])
 {
-	while (ft_strncmp(*evm, "PATH=", 5) != 0)
-		evm++;
-	*evm += 5;
-	pip->env_path = ft_split (*evm, ':');
+	char	*default_path;
+
 	pip->args = arv;
 	pip->n = arc;
+	if (!evm || !*evm)
+	{
+		default_path = "/usr/gnu/bin:/usr/local/bin:/bin:/usr/bin:";
+		pip->env_path = ft_split (default_path, ':');
+		if (!pip->env_path)
+			ft_error("Invalid argument");
+		return ;
+	}
+	while (evm && *evm && ft_strncmp(*evm, "PATH=", 5) != 0)
+		evm++;
+	if (*evm == NULL)
+		ft_error("Path not found");
+	*evm += 5;
+	pip->env_path = ft_split (*evm, ':');
+	if (!pip->env_path)
+		ft_error("Invalid argument");
 }
 
 void	ft_here_doc(t_pipexb *pip)

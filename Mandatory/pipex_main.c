@@ -6,7 +6,7 @@
 /*   By: ataoufik <ataoufik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 16:06:43 by ataoufik          #+#    #+#             */
-/*   Updated: 2024/03/09 19:03:42 by ataoufik         ###   ########.fr       */
+/*   Updated: 2024/03/10 16:37:28 by ataoufik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,29 @@
 
 void	inist_pipe(t_pipex *pip, int arc, char *arv[], char *evm[])
 {
-	if (pipe(pip->fd) == -1)
-		ft_messg_error("error pipe");
-	while (ft_strncmp(*evm, "PATH=", 5) != 0)
-		evm++;
-	*evm += 5;
-	pip->env_path = ft_split (*evm, ':');
+	char	*default_path;
+
 	pip->args = arv;
 	pip->n = arc;
 	pip->cmd1 = ft_split(arv[2], ' ');
-	if (pip->cmd1 == NULL)
-		ft_error("Invalid argument");
 	pip->cmd2 = ft_split(arv[3], ' ');
-	if (pip->cmd2 == NULL)
+	if (pip->cmd1 == NULL || pip->cmd2 == NULL)
+		ft_error("Invalid argument");
+	if (!evm || !*evm)
+	{
+		default_path = "/usr/gnu/bin:/usr/local/bin:/bin:/usr/bin:";
+		pip->env_path = ft_split (default_path, ':');
+		if (!pip->env_path)
+			ft_error("Invalid argument");
+		return ;
+	}
+	while (evm && *evm && ft_strncmp(*evm, "PATH=", 5) != 0)
+		evm++;
+	if (*evm == NULL)
+		ft_error("Path not found");
+	*evm += 5;
+	pip->env_path = ft_split (*evm, ':');
+	if (!pip->env_path)
 		ft_error("Invalid argument");
 }
 
@@ -76,6 +86,8 @@ int	main(int arc, char *arv[], char *evm[])
 
 	if (arc != 5)
 		ft_error("Error : incorrect number of arguments");
+	if (pipe(pip.fd) == -1)
+		ft_messg_error("error pipe");
 	inist_pipe(&pip, arc, arv, evm);
 	execute_process_child(&pip);
 	close(pip.fd[1]);
