@@ -6,7 +6,7 @@
 /*   By: ataoufik <ataoufik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/24 16:06:43 by ataoufik          #+#    #+#             */
-/*   Updated: 2024/03/10 16:33:54 by ataoufik         ###   ########.fr       */
+/*   Updated: 2024/03/11 18:13:15 by ataoufik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,12 @@ void	ft_here_doc(t_pipexb *pip)
 	{
 		ft_putstr_fd("heredoc> ", 1);
 		str = get_next_line(0);
-		if (ft_strncmp(pip->args[2], str, ft_strlen(pip->args[2])) != 1)
+		if (str == NULL
+			|| (ft_strncmp(pip->args[2], str, ft_strlen(pip->args[2])) != 1))
+		{
+			free(str);
 			break ;
+		}
 		ft_putstr_fd(str, fds[1]);
 		free(str);
 	}
@@ -94,6 +98,7 @@ int	main(int arc, char *arv[], char *evm[])
 		pip.i++;
 	}
 	process_child_last(&pip);
+	free_2d_arr(pip.env_path);
 	while (wait(NULL) != -1)
 		;
 	return (0);

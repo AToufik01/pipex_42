@@ -6,7 +6,7 @@
 /*   By: ataoufik <ataoufik@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 17:28:50 by ataoufik          #+#    #+#             */
-/*   Updated: 2024/03/10 17:37:11 by ataoufik         ###   ########.fr       */
+/*   Updated: 2024/03/11 14:42:33 by ataoufik         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static int	is_spliter(char c)
 	return (c == ' ' || c == '\t');
 }
 
-static int	len_word(char *str)
+int	len_word(char *str)
 {
 	int	len;
 
@@ -58,6 +58,8 @@ char	**ft_split_space_tab(char *str)
 	index = 0;
 	i = 0;
 	res = malloc((count_words(str) + 1) * sizeof(char *));
+	if (!res)
+		return (NULL);
 	while (str[i] && index < count_words(str))
 	{
 		while (is_spliter(str[i]))
